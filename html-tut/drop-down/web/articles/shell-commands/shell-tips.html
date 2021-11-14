@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <%include file="/head-template.html"/>
+    <body>
+        <%include file="/navbar-template.html"/>
+        <h1> Python </h1>
+        <article>
+            Installing Python VENV
+            sudo apt upgrade
+            sudo apt update
+            #sudo apt-get install libpython3.8-stdlib/focal
+            #sudo apt-get install python3.8
+            sudo apt-get install python3-dev
+            sudo apt-get install python3-venv
+            python3 -m venv ~/py-venv # path where py-venv to be insalled
+            Activating and deactivating venv
+            . py-venv/bin/activate # to activate
+            deactivate # to deactivate
+        </article>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+body {
+    background-color: powderblue;
+}
+
+table, th, td {
+    border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.nav-menu {
+    /*background-color: red;*/
+    /*padding: .1em;
+    margin: .11em;*/
+    border: 0.1em solid grey;
+    display: flex;
+    border-radius: .5em;
+    /* justify-content: space-between;*/
+    /* box-sizing: content-box; */
+    /* text-align: center;*/
+}
+
+.nav-item {
+    color: green;
+    /*background-color: grey;*/
+    /*font-weight: bold;*/
+    padding : .5em;
+    margin  : .5em; 
+    text-align: center;
+    border: 0.1em solid #5D6063;
+    border-radius: .5em;
+    /*box-sizing: border-box;*/
+    list-style-type: none;
+}
+
+.nav-item:hover {
+    /*background-color: blue; */
+    /*font-weight: bold;*/
+    color: green;
+    background-color: grey;
+}

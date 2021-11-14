@@ -1,0 +1,21 @@
+
+env = Environment(CC = 'g++',
+    CCFLAGS = '-g')
+
+env.StaticLibrary('my-lib', ['my-lib.cpp'])
+
+src = [
+    'selection-sort',
+    'bubble-sort',
+    'insertion-sort',
+    'merge-sort',
+    'quick-sort',
+]
+
+for item in src :
+    env.Program(target =  item + '.exe', 
+        LIBS=['my-lib'], 
+        source = item + '.cpp',
+        LIBPATH='.',
+        )
+

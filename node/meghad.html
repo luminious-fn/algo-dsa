@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Megha Devices</title>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js" defer></script>
+        <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js" defer></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" defer></script>
+
+        <script src="scripts/fb.js" type="text/javascript" defer> </script>
+    </head>
+
+    <body>
+        <p id = "heading"> Kurtakoti GP: Welcome to Water Tank Monitoring System </p>
+        <input type="button" onclick="refresh_data();" name="ok" value="Refresh Data" />
+
+        <br>
+        <div>
+            <p id = 'tank_1_level_label'>Tank 1 Present Level : <span id = 'tank_1_level_value'>Invalid</span></p>
+            <p id = 'tank_1_max_level_label'>Tank 1 provisioned Max Level : <span id = 'tank_1_max_level'>Invalid</span></p>
+            <p id = 'tank_1_max_level_label'>Last updated time : <span id = 'tank_1_updated_time'>Invalid</span></p>
+        </div>
+
+        <br>
+        <div>
+            <p id = 'tank_2_level_label'>Tank 2 Present Level : <span id = 'tank_2_level_value'>Invalid</span></p>
+            <p id = 'tank_2_max_level_label'>Tank 2 provisioned Max Level : <span id = 'tank_2_max_level'>Invalid</span></p>
+            <p id = 'tank_2_max_level_label'>Last updated time : <span id = 'tank_2_updated_time'>Invalid</span></p>
+        </div>
+
+        <br>
+        <div>
+            <p id = 'tank_3_level_label'>Tank 3 Present Level : <span id = 'tank_3_level_value'>Invalid</span></p>
+            <p id = 'tank_3_max_level_label'>Tank 3 provisioned Max Level : <span id = 'tank_3_max_level'>Invalid</span></p>
+            <p id = 'tank_3_max_level_label'>Last updated time : <span id = 'tank_3_updated_time'>Invalid</span></p>
+        </div>
+
+        <br>
+    </body>
+
+</html>

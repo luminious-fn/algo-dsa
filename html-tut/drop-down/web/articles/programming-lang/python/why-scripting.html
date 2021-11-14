@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+    <body>
+        <p>Prabhu Ullagaddi's Home Page</p>
+<nav class='navbar'>
+            <div class="dropdown">
+                <!-- <button class="dropbtn">Home</button> -->
+                <a class="dropbtn" href="/index.html">Home</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn" href="/articles/articles.html">Articles</a>
+                <div class="dropdown-content">
+                    <a href="https://www.google.com">GIT WorkTree</a>
+                    <a href="#">GIT Mirror & MonoRepo</a>
+                    <a href="#">Rise of Co-Operative MultiTasking</a>
+                    <a href="#">Python asyc, await</a>
+                    <a href="#">RL-78 uC</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn" href="/projects/projects.html">Projects</a>
+                <div class="dropdown-content">
+                    <a href="#">RL-78 Flash Programmer</a>
+                    <a href="#">Password Guessing</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn" href="/resume/resume.html">Resume</a>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                </div>
+            </div>
+</nav>
+        <h1> Why Scripting ?</h1>
+        <article id='scripting'>
+        <p>
+            For all kinds of Software Developers (Embedded or Application), the scripting languages like Python/Javascript/etc will
+            give significant productivity boost.
+            This is in comparision to compiled languages like C/C++/Java.
+        </p>
+        <p>
+            Some benifits of scripting languages:
+            <ul>
+                <li>Scripting allows us to express more thoughts in less code <br>
+                    Not just a line of script needs ~10x machine instructions to run compared to a line of C, but also, it is 10x relativly compact.
+                    Not convinced? try to implement a moderate size concept in C and Python.
+                </li>
+                <li>Script engines manage automatically a lot of things like
+                    <ul>
+                        <li> Data Typing</li>
+                        <li> Garbage memory collection, memory allocation </li>
+                        <li> printing exact line upon runtime error etc at zero cost for us. </li>
+                        <li> They are mode for our (developers) productivity. </li>
+                        <li>
+                            In compiled language, you would modify code, <em>build</em> it and run it.
+                            This build state is time consuming and distracting. But in scripting language, there is no build stage,
+                            thus saving huge precious amount time.
+                            As said earlier, generally scripts uses dynamic typing
+                            (They are as strongly typed as C/C++, many of think, they are not typed. It is wrong.).
+                            So, you are writing very less code for same feature compared to statically typed languages like C/C++/Java.
+                            I feel, type safety of compiled languages harmed us more than it helped us.
+                             To be more objective, if you write a 1 line of C code and another line of Python code,
+                              typically, you would be expressing 10 to 100 times more powerfully in python, because,
+                             to translate 1 line of python into machine code, it takes 10 to 100 time more machine codes than C.
+                              This is widely observed.
+                        </li>
+                    </ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </p>
+        <p>
+            Yes, I hear, they are not as fast as C/C++. And, don't forget, developers are also costly.
+            Scripting languages provide function binding of C/C++. ie, we can call C++ function, in Python.
+            Thus, the code that really needs to be optimized can be kept in C++, while rest of the code can
+            be in Python. Cost of the developer is much more compared to cost of the CPU/RAM.
+            We can compensate any slowness, if at all that matters by using a little faster CPU and little
+             more CPU. That is very cheap. Give what your customers need.
+             Majorly it is our quality product at competitive price is the need. For this, most of the time,
+             scripting will help you (rather compiled language like C/C++/Java).
+        </p>
+        <p>
+            Growth of scripting languages is phenomenal. You can see it https://pypl.github.io/PYPL.html and https://www.tiobe.com/tiobe-index/
+        </p>
+        <p>
+            I faced one issue with Python/Javascript: If you write code, it is available in plaint text to every one. ie, in compiled langauge,
+            one can release the binary, thus keeping our souce code private.
+            People say, we can send the byte code to customers, but I do not know much of it.
+        </p>
+        <p>
+            You want more technical analysis and <a class='anchor-hover' href='https://www.tcl.tk/doc/scripting.html' >
+                there is document you can read it </a>
+        </p>
+        </article>
+    </body>
+</html>

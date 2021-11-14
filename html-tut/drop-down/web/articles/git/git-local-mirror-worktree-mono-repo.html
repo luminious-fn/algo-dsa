@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+    <body>
+        <p>Prabhu Ullagaddi's Home Page</p>
+<nav class='navbar'>
+            <div class="dropdown">
+                <!-- <button class="dropbtn">Home</button> -->
+                <a class="dropbtn" href="/index.html">Home</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn" href="/articles/articles.html">Articles</a>
+                <div class="dropdown-content">
+                    <a href="https://www.google.com">GIT WorkTree</a>
+                    <a href="#">GIT Mirror & MonoRepo</a>
+                    <a href="#">Rise of Co-Operative MultiTasking</a>
+                    <a href="#">Python asyc, await</a>
+                    <a href="#">RL-78 uC</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn" href="/projects/projects.html">Projects</a>
+                <div class="dropdown-content">
+                    <a href="#">RL-78 Flash Programmer</a>
+                    <a href="#">Password Guessing</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn" href="/resume/resume.html">Resume</a>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                </div>
+            </div>
+</nav>
+        <nav data-type='toc'>
+            <h1>Table of Contents</h1>
+            <ol>
+                <li>Introduction</li>
+                <li>Git Local Mirror</li>
+                <li>Git Worktree</li>
+                <li>Git Mono Repo</li>
+            </ol>
+        </nav>
+        <section data-type='chapter'>
+            <h1> Introduction </h1>
+            <p> Generally, we divide our code into multiple repos. And, if we want to simultaneously work on two
+                issues from same repo, we end up cloning that twice. When repo size grows even cloning starts consuming
+                the disk space and network bandwidth. If we start having more repos, managing them becomes tough
+                (think of backing up, replicating etc). However, I think, there are better ways of organizing our code in git.
+                I have learned some git practices that I felt a lot better compared to widely used methods.
+                These best practice can be implemented for our personal projects using standard git tool.
+                Mono-repo can be used to pack a number of related repos into one, if not all repos of your organization.
+            </p>
+            <p> Instead of creating too many repos, can I effectively club related
+                source code into one repo (instead of multiple repos)? If so, how can I avoid, repeated clones?
+                I want nearly all benefits of multi-repo in mono-repo. Let me try to explain why it is very possible
+                and natural in mono-repo. It is much easier to mirror the git repos on local machine.
+                Using work tree we can work on multiple issues for the same branch out of single repo.
+                All will be explained in this. I tried to reduce the content as much as possible here...
+            </p>
+            <p>Concepts : Mono-repo, git local mirror, git worktree, Mono-repo branching conventions,
+                having multiple revisions of a library with single application code and linking them at the will.
+            </p>
+        </section>
+        <section data-type='chapter'>
+            <h1> Git WorkTree?</h1>
+            <p> When we checkout or switch a branch, git reads from its database and presents us a natural “Folder and files” of our source files.
+                This folder structure is ‘work tree’ and created in the folder in which you cloned the repo.
+                However, git can create a work tree outside the repo folder.
+                And it can create one work tree for each branch any where in your local file system.
+                Further, if you want to create multiple work trees for same branch in local file system,
+                you can do so by creating new branches on top the branch.
+                Compare this with cloning your repo multiple times for multiple issues that you work con-currently.
+                Yes, cloning consumes your disc space, n/w bandwidth, tough to manage etc.
+                On other hand work tree provides beautiful way of doing.
+
+                Following is brief introduction to worktree cmds. You can find the better tutorials on internet on git worktree.
+                <br> git worktree add <local-folder-name> <existing-branch-tobe-used-for-worktree>
+                <br> Ex: git worktree add ../my-feature feature/feature-a
+                <br> This creates a folder ../my-feature and checkout the branch feature/feature-a in that folder.
+                Thus we will have worktree in that folder
+                <br> git worktree list
+                <br> git worktree remove
+                <br> Note: You can create only one work tree per branch. If you try to create one more, git gives error.
+                A simple solution to create more work tree from same branch, just create some dummy branches out of the branch of your interest.
+                And create work trees. Since all these branches will point to same content, hence no issue at all.
+                I generally suffix _temp to branch name to identify from which branch I created the dummy branch.
+            </p>
+        </section>
+        <section data-type='chapter'>
+            <h1>Git mirror</h1>
+            <p> Once you have a repo on your local machine, you can create as many work trees as you want without
+                closing more repos again and again. This local repo effectively starts acting as local git mirror.
+                Still you will be pushing to remote. To keep local repo updated, you would be doing git fetch/git pull
+                as and when needed. You would never delete this local repo and you would never need to clone from remote again.
+                If you really want to clone for some reasons, instead of cloning from remote, still you can create same
+                clone from this mirror repo. Here mono repo or small number of repos will be handy to mirror.
+                Think, if you want to create a mirror, you job would be much easier if you just one repo instead of 10 repos!
+            </p>
+        </section>
+        <section data-type="chapter">
+            <h1>Multiple Library revisions by multiple applications</h1>
+            <p>
+                Generally, we create a repo for a library code.
+                Application users would just clone that lib repo and checkout which ever version of library they want.
+                This is the flexibility of multi-repo. And in mono repo, we can create only one worktree per branch,
+                for every branch at the same time. If you really want to create multiple work trees for the same branch,
+                we can employ simple trick. Just create a temp branch out of the branch you are interested,
+                and create a worktree for that temp branch. Do it again, if you want one more work tree.
+                By all means, I have not seen any thing lacking in mono-repo compared to multi-repo.
+            </p>
+        </section>
+    </body>
+</html>

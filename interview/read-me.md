@@ -37,4 +37,6 @@ TODO List
     - https://belaycpp.com/2021/07/07/how-many-languages-should-a-c-expert-speak/
 - Blogs
     - https://belaycpp.com/
+    - https://www.coreboot.org/
+    
     

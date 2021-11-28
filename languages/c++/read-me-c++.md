@@ -210,3 +210,8 @@ weak_ptr<int> w_ptr = s_ptr;
 
 ## cast ##  
 - https://www.tutorialspoint.com/cplusplus/cpp_casting_operators.htm
+
+## dynamic cast ##
+- https://www.geeksforgeeks.org/dynamic-_cast-in-cpp/
+- https://www.tutorialspoint.com/cplusplus/cpp_casting_operators.htm
+- https://www.cplusplus.com/doc/tutorial/typecasting/

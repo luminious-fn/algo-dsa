@@ -1,5 +1,6 @@
 
 # FAQ #
+- https://www.code2master.com/category/c/
 - https://www.javatpoint.com/c-interview-questions
 - https://www.interviewbit.com/c-interview-questions/#parenthesis-checker
 - 

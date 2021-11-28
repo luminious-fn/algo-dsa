@@ -1,0 +1,13 @@
+# regex tutprial #
+
+## basics ##
+## brackets ##
+https://en.wikipedia.org/wiki/Bracket
+Brackets are used for grouping similar entities. Thus that entity will be 
+separated from its surrounding
+There are 4 types 
+
+() -  round brackets or parentheses
+[] - square brackets or brackets
+{} - curly brackets or braces
+<> - angle brackets or Chevron

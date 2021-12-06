@@ -1,4 +1,6 @@
+"""
 
+"""
 import sys
 import functools
 
@@ -34,7 +36,7 @@ def func(name):
     pass
     print(f'{sys._getframe().f_code.co_name}')
     #print(f'name')
-    return 'hi '
+    return 'hi'
 
 func = (my_decorator('arg'))(func)
 #print('calling func')

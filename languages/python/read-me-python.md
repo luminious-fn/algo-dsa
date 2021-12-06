@@ -1,5 +1,42 @@
 # Python Read Me. #
 
+## NEW THINGS FOR ME ##
+- python can be released in compile only file. and we can ask python interpreter
+to run python compile files instead of source file. read below  
+https://docs.python.org/3/tutorial/modules.html#compiled-python-files
+
+- understand standard library: https://docs.python.org/3/library/index.html
+- understand all the built-in functions.
+    - https://docs.python.org/3/library/functions.html#built-in-functions
+    - Builtin functions are most important, available even in pico! 
+    - interpreter does import builtin functions for us
+        from builtins import *  
+        Or, we can do this too if there is a name collision
+        import builtins
+        builtin.super()
+- understand all string class functions.
+- to recognize a folder as a package, please keep __init__.py file.
+    else, you don't need that file at all.
+- string slicing : -ve 
+- global and nonlocal keywords
+    - if a variable is used without assignment, it is assumed to be global, not local.
+    - nonlocal keyword indicates the variable is not local, but exist in a scope just outside
+    of the local scope, and, for any reference of that variable, interpret will use it.
+- Top level code env or entry point
+    - https://docs.python.org/3/library/__main__.html#module-__main__
+    - __name__ and '__main__'
+    - always try type annotation, even for 
+     def main() -> int :
+        pass
+- map, filter and reduce ?
+- decorators 
+- forward declaration is not needed in python since no complilation is done.
+only during execution, object are referenced and before that, function are created.
+
+- grammar : https://docs.python.org/3/reference/grammar.html
+- global variables across modules https://docs.python.org/3/faq/programming.html?highlight=cookbook#id11
+
+
 ## Basic ##
 Always start with shebang  
 #!/usr/bin/env python3
@@ -24,18 +61,23 @@ https://docs.python.org/3/using/cmdline.html#cmdoption-u
 - list()
 - sorted() # out-of-place sorting. gives new seq?
 - reversed() # just reverse order of sequence.
-- set() # create a new set (remove duplicates)
-    - sorted(set(seq)) # ordered iteration of unique
-- list(seq)
-- dict((k:v), (k:y))
 
+- set() or {} but with values separated by commas. See dict's {}
+# create a new set (remove duplicates)
+    - sorted(set(seq)) # ordered iteration of unique
+- list(seq) or []
+- dict((k:v), (k:y)) or {}
+- tuple() or ()
+
+- var() # dict of all local var()
 
 ## keywords ##
-Operators : `in`, `not in`, `is`, `is not`
-Boolen Operators : and, or, not 
-Walrus Operator : := assignment inside an expression, not inside a statement
-They are called short circuit operator because, they are evaluated 
-from left to right and it stops as soon as outcome is determined.
+- Operators : `in`, `not in`, `is`, `is not`
+- Boolen Operators : and, or, not 
+    They are called short circuit operator because, they are evaluated 
+    from left to right and it stops as soon as outcome is determined.
+- Walrus Operator : := assignment inside an expression, not inside a statement
+- statements: global, nonlocal 
 
 Comparioson operators > < >= <= != ==
 for while del
@@ -205,6 +247,9 @@ def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
 - https://docs.python.org/3/tutorial/controlflow.html#documentation-strings
 - Do not exceed 79th column in text editor.
 - use 4 space indentation
+
+docstring is available as __doc__ attribute binding to any object.
+
 single line doc string
 def fib():
     """generates the fib numbers"""
@@ -212,11 +257,19 @@ def fib():
 multiline doc string
 def fib():
     """generates the fib numbers
-    BLANK LINE
+    LEAVE A BLANK LINE
     it indeed prints all fib numbers to screen.
     """
 
 print(fib.__doc__) has above string.
+
+Similarly for module: first (second line due to shebang) line of module.
+same is for class
+
+class class_name:
+""" this is doc string. """
+    def __init__(self):
+        pass
 
 ### 4.8.8 Function annotation ###
 - https://docs.python.org/3/tutorial/controlflow.html#function-annotations
@@ -360,22 +413,189 @@ we should modify sys.path, not the PYTHONPATH or site-packages etc.
 
 ### 6.1.3. “Compiled” Python files¶
 https://docs.python.org/3/tutorial/modules.html
-Python files can be shared with compiled only.
-This is for speed purpose, and, somewhat binary only format where one
-wants to hide the source code like C executables. 
-(It is possible to reverse engineer the file, but that is far difficult!)
+Python interpreter will compile the source file to .pyc before running.
+suc .pyc files are stored in ./__pychace__ folder.
+
+On any subsequent run of the same files, python first looks into .pyc file,
+if its date is same as actual src file, compiled file will be use, instead of 
+src file.
+
+Further, if the .pyc file is present in the src directory, Python will not 
+load at all the actual .py file. It always loads the .pyc file. This means,
+for compiled only distribution, we can remove actual src file and distibute the 
+.pyc files only. as .pyc files are platform independent, we dont need to worry on 
+this.
+the module compileall can explicitly compile files to .pyc
+
+Please read this : https://docs.python.org/3/tutorial/modules.html#compiled-python-files
 
 
 
+## 6.2. Standard Modules¶
+sys
+
+To print all names (private global symbols of a module) lists all types of names: 
+variables, modules, functions, etc.
+dir(loaded_module_name) 
+
+import builtin # all built in functions like dict(), list()
+dir(builtins)
+
+
+## 6.4. Packages
+https://docs.python.org/3/tutorial/modules.html#packages
+Python module namespaces are provided by Python packages. 
+They are structured using doted module name like A.B.C
+
+Loosely speaking.
+Python module = a python file!
+Python package = A directory of many python files!
+
+A directory to be treated as a python package must contain a file called
+__init__.py. This file can be empty but can also contain some init code if needed.
+
+how to import a module from a package - there are many ways
+import module
+from package import item
+
+import a.b.c
+# to use a.b.c.function()
+from a.b import c
+# c.function()
+from a.b.c import function
+# function()
+
+So, from statement make the name available without full path
+but if we use plain import statement, we must use full path.
+
+from package import * # is bad bad practice!
+
+Recommended way to import a python module is
+from package import specific_submodule
+
+next, better way is import module.
+I like latter!!!
+
+### 6.4.2. Intra-package References¶
+OR relative import 
+https://docs.python.org/3/tutorial/modules.html#intra-package-references
+
+from . import item
+from .. import item
+from ..module_pkg import item
 
 
 
+# 7. Input and Output¶ #
+https://docs.python.org/3/tutorial/inputoutput.html
+
+- format strings literals example
+    - f'... {expression:n.m} ...'
+    - if n is positive, it is right justified, -ve positive Justified TODO!
+
+- str.format(arguments): This can take a dict of key_value to be formatted. This
+is an powerful option to concisely format some strings!
+    - str.rjust(), ljust(), center(), zfill()
+- string.Template use $x place holder!
+
+## 7.2. Reading and Writing Files
+file_obj = open(filename:str, mode:str)
+mode: r: read, w: write, a: append, r+ read+write
+if we append b to it, it is binary mode. USe binary mode for all non-text files.
+
+with open('my_file', 'w') as file_obj:
+    read_data = file_obj.read()
+
+With is the context manager for open() functions.
+
+f.read(size:int), if size is omitted, it reads entire file into memory!
+returns empty string '' if file pointer is reached EOF.
+f.readline(): reads a until it hits a \n
+if EOF reached , returns empty string ''
+
+file object is an iterator based on newline.
+for line in file_object:
+    print(line)
+
+for all lines
+my_file_list = list(file_object)
+str = f.readlines()
+
+f.write(string or byte object)
+string for text mode, byte_object for binary mode.
 
 
+f.tell()
+    - tell the current position in bytes for Binary files, a n opaque number for 
+        text files.
+f.seek(offset:int, whence:int)
+    whence : 0: start of file
+             1: current position
+             2: end of file.
+        
+
+## 7.2. Reading and Writing Files
+Python Object  --> string =   serializing 
+string --> Python object  =de-serializing
+
+my_list = ['a', 'b', 'c']
+json.dump(my_list, file_object)
+json.dumps(my_list)
+my_list = json.load(file_object)
+
+pickle is another module specific to python. but JSON is generic.
+
+# 8. Errors and Exceptions #
+Exception is an error that occurs while executing a line.
+They are not syntax error.
+
+try:
+    print('hello world')
+except Exception as ex:
+    print(f'caught exception {ex}')
+    exit(1)
+else:
+    print('this will execute if no exception occurred')
+finally:
+    print('this always gets executed')
 
 
+# 9. Classes #
 
+https://docs.python.org/3/tutorial/classes.html
+https://www.codesdope.com/course/python-subclass-of-a-class/
 
+parent class = super class = base class
+child class  = sub class   = derived class 
+
+To bundle data and its functionality together, we use classes.
+
+anything that follows dot (.) is an attribute.
+
+A scope is a textual region of a Python program where a namespace is directly accessible. “Directly accessible” here means that an unqualified reference to a name attempts to find the name in the namespace.
+
+class class_name(base1, base2, base3):
+    def __init__(self):
+        pass
+
+class has attributes : data and methods
+
+method object Vs function object
+    - Method Objects =  function objects binded to a class instance.  They bind to an object.
+    hence, they always implicitly passed the object as first arg.
+    -
+
+obj.__class__ contain the class name.
+isinstance(class_object, class)
+issubclass(subclass, superclass)
+
+## 9.8. Iterators ##
+https://docs.python.org/3/tutorial/classes.html#iterators
+
+## 9.9. Generators ##
+https://docs.python.org/3/tutorial/classes.html#generators
+## 9.10 Generator expressions ##
+https://docs.python.org/3/tutorial/classes.html#generator-expressions
 
 
 ## References ##

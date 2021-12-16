@@ -14,6 +14,10 @@ https://docs.python.org/3/tutorial/modules.html#compiled-python-files
         Or, we can do this too if there is a name collision
         import builtins
         builtin.super()
+- dunder functions
+    - https://www.geeksforgeeks.org/dunder-magic-methods-python/
+    - https://www.geeksforgeeks.org/customize-your-python-class-with-magic-or-dunder-methods/?ref=lbp
+    
 - understand all string class functions.
 - to recognize a folder as a package, please keep __init__.py file.
     else, you don't need that file at all.

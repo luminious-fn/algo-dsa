@@ -33,3 +33,14 @@ __pycache__
 *.exe
 *.out
 *.app
+a.out
+*.swp
+1
+*.exe
+*.o
+*.a
+*.swo
+*.dblite
+
+
+

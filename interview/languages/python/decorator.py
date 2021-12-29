@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
 """
-
+basic decorator function
 """
 import sys
 import functools
@@ -43,3 +44,4 @@ func = (my_decorator('arg'))(func)
 s = func('aum')
 #print(s)
 #fun('aum')
+

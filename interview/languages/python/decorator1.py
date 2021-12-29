@@ -1,7 +1,6 @@
 # Python code to illustrate
 # Decorators with parameters in Python (Multi-level Decorators)
 
-
 def decodecorator(dataType, message1, message2):
 	def decorator(fun):
 		print(message1)

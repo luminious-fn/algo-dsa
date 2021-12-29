@@ -28,3 +28,4 @@ def mul(n1:float, n2:float) -> float:
 
 mul(1, 3)
 mul(1.1, 3.3)
+

@@ -16,6 +16,7 @@ int fun(int a) {
 }
 
 
+
 class A {
     public:
         int number;
@@ -33,8 +34,8 @@ class A {
 
 int main(int argc, char *argv[]) {
     
-    //fun(4);
-    //fun(5.06);
+    fun(4);
+    fun(5.06);
     /* operator overloading */
     A n1(4), n2(8);
 

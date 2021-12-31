@@ -15,7 +15,7 @@ void fun(T1 data1, T2 data2) {
     cout << " input data1/2: " << data1  << " and  " << data2 << endl;
 }
 
-template <class T1, typename T2>
+template <typename T1, typename T2>
 class MyClass {
     public:
         T1 data1;

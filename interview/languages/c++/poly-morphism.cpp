@@ -17,9 +17,13 @@ int fun(int a) {
 
 class parent {
     public:
+#if 0 
         void fun(void) {
             cout << "in parent" << endl;
         }
+#else
+        virtual void fun(void) = 0;
+#endif
         virtual void fun_virt(void) {
             cout << "in parent: fun_virt" << endl;
         }
@@ -30,6 +34,9 @@ class child : public parent {
     public:
         void fun(void) {
             cout << "in child" << endl;
+        }
+        void fun(int x) {
+
         }
 
         void fun_virt(void) {

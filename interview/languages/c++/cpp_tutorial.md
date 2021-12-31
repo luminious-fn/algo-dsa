@@ -60,3 +60,8 @@ compiler -> linker  -> executable     -> loader
     - alias can not refere to  nul object like pointer
     - once alias is init, it can't be changed,
     - functions can return alieas, thus can  make function as lvalue.
+
+- smart pointer
+    - https://www.internalpointers.com/post/beginner-s-look-smart-pointers-modern-c
+    - https://www.educative.io/edpresso/what-are-smart-pointers
+    

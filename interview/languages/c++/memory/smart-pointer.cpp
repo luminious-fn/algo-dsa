@@ -1,19 +1,23 @@
 /*
-implementing smart pointer for int type.
-managing heap objects using stack (scoped) objects.
-memory gets cleared automatically when
-stack object goes out of scope.
-This is redimentory garbage collector!
+Implementing a smart pointer for int type.
+Managing heap objects using stack (scoped) objects.
+Memory gets cleared automatically when
+stack object goes out of scope. (less leaky!)
+This is a redimentory garbage collector!!!
 */
 
 #include <iostream>
 using namespace std;
 
 class smart_pointer {
-
+    private:
     public:
-        int *&ptr;        
+        int *&ptr; 
         smart_pointer(int *&ptr):ptr(ptr){            
+            cout << "constructor called" << endl;            
+        };
+        
+        void reinit(int *ptr){            
             cout << "constructor called" << endl;            
         };
 
@@ -37,10 +41,9 @@ int main(int argc, char *argv[]){
     }
 
     /* smart pointer */
-    smart_pointer my_sp(raw_ptr);
+    smart_pointer my_sp(raw_ptr);        
     *my_sp = 999;
-    cout << *my_sp << endl;
-    cout  << "end" << endl;
+    cout << *my_sp << endl;    
     return 0;
 }
 

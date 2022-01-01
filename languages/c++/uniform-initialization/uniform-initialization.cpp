@@ -15,7 +15,16 @@ clear; rm -rf ./a.out;g++ -std=c++11 -Wall  $PROG && ./a.out
 ref:
     https://www.learncpp.com/cpp-tutorial/constructor-member-initializer-lists/
     https://stackoverflow.com/questions/10828294/c-and-c-partial-initialization-of-automatic-structure
-    
+    http://mikelui.io/2019/01/03/seriously-bonkers.html
+
+Still I feel, C++ did not give the 
+named intialization. That is too bad.
+Compilar can statically knows what is identifier name, yet
+std did not give it to us!!! fine.. go on! at least, 
+uniformintialization fixes a lot of old broken c++ grammer  stuff.
+
+Overall, I am working to use a subset of C++ which is beautiful, elegant, simple and leave all other 
+sysntax that are ugly!!!
 */
 class Box {
     public:

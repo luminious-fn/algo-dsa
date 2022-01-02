@@ -45,23 +45,23 @@ class smart_pointer {
         explicit smart_pointer (T *ptr);
         ~smart_pointer();
         T& operator* (void) const;                        
-        T* operator->(void) const;
-               
-        smart_pointer<T>& operator= (smart_pointer<T> &right_side) {
-            std::cout << "= operator " << std::endl;
-            right_side.ref_count->display_count();
-            if (!this->ref_count->dec_count()){
-                std::cout << " = delete smart ptr object " << std::endl;
-                delete this->ptr;
-                delete this->ref_count;
-            }
+        T* operator->(void) const;            
+        smart_pointer<T>& operator= (smart_pointer<T> &right_side);        
+};
 
-            return right_side;
-        };
-        //smart_pointer<T>& operator= (smart_pointer<T> right_side) {
-        //    return right_side;
-        //};
-        void hi(void) const;
+template <typename T>
+smart_pointer<T>& smart_pointer<T>::operator= (smart_pointer<T> &right_side) {
+    std::cout << "= operator " << std::endl;
+    right_side.ref_count->display_count();
+    if (!this->ref_count->dec_count()){
+        std::cout << " = delete smart ptr object " << std::endl;
+        delete this->ptr;
+        delete this->ref_count;
+    }
+    this->ptr = right_side.ptr;
+    this->ref_count = right_side.ref_count;
+    this->ref_count->inc_count();
+    return *this;
 };
 
 template <typename T>
@@ -92,11 +92,6 @@ template<typename T>
 T* smart_pointer<T>::operator->(void) const {
             std::cout << "-> operator called" << std::endl;
             return ptr;
-};
-
-template <typename T>
-void smart_pointer<T>::hi(void) const {
-    std::cout << "-> operator called" << std::endl;    
 };
 
 class Shape {    

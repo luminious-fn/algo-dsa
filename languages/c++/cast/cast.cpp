@@ -19,11 +19,14 @@ int main(int argc, char *argv[]) {
 
 #if 1
     // static_cast
-    int a = 10;
-    char c ;
-  
-    // pass at compile time, may fail at run time
-    int* q = (int*)&c; 
+    //int a = 10;    
+    double double_var { 10.3 };    
+    int q = static_cast<int>(double_var); 
+    std::cout << q << std::endl;
+
+    double *double_ptr { nullptr };
+    int *int_ptr = static_cast<int*> (double_ptr);
+
     //int* p = static_cast<int*>(&c);
 #endif
 

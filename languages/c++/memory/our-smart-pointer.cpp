@@ -46,20 +46,24 @@ class smart_pointer {
         ~smart_pointer();
         T& operator* (void) const;                        
         T* operator->(void) const;            
-        smart_pointer<T>& operator= (smart_pointer<T> &right_side);        
+        smart_pointer<T>& operator= (const smart_pointer<T> &right_hand_side);        
 };
 
 template <typename T>
-smart_pointer<T>& smart_pointer<T>::operator= (smart_pointer<T> &right_side) {
+smart_pointer<T>& smart_pointer<T>::operator= (const smart_pointer<T> &right_hand_side) {
     std::cout << "= operator " << std::endl;
-    right_side.ref_count->display_count();
+    if(this == &right_hand_side) {
+        return *this;
+    }
+    
+    right_hand_side.ref_count->display_count();
     if (!this->ref_count->dec_count()){
         std::cout << " = delete smart ptr object " << std::endl;
         delete this->ptr;
         delete this->ref_count;
     }
-    this->ptr = right_side.ptr;
-    this->ref_count = right_side.ref_count;
+    this->ptr = right_hand_side.ptr;
+    this->ref_count = right_hand_side.ref_count;
     this->ref_count->inc_count();
     return *this;
 };
@@ -101,7 +105,7 @@ class Shape {
 
 };
 void Shape::display(void) const {
-            std::cout << "display" << std::endl;
+            std::cout << "val: " << val << std::endl;
 };
 
 int main(int argc, char *argv[]){
@@ -110,9 +114,11 @@ int main(int argc, char *argv[]){
     smart_pointer<Shape> sm_ptr { new (std::nothrow) Shape };        
     sm_ptr->val = 999;
     (*sm_ptr).val = 1000;
+    sm_ptr.operator*().val = 1001;
     sm_ptr->display();
     smart_pointer<Shape> sm_ptr1 { new (std::nothrow) Shape };
-    sm_ptr1 = sm_ptr;
+    //sm_ptr1 = sm_ptr;
+    sm_ptr1.operator=(sm_ptr);
 
     std::cout << "-------------------" << std::endl;    
     return 0;

@@ -1,30 +1,35 @@
 /*
 export PROG="bubble-sort-non-decreasing";clear; g++ $PROG.cpp -o $PROG.exe && ./$PROG.exe 
 */
-
 #include<iostream>
 using namespace std;
 
-void print_arry(int arr[], int len) {
+template<typename T, typename U>
+void print_arry(T arr[], U len) {
     for(int i=0; i<len; i++) {
-        cout << arr[i] << " " ;
+        std::cout << arr[i] << " " ;
     }
 }
-void swap(int *a, int *b) {
-    *a = *a ^ *b;
-    *b = *a ^ *b;
-    *a = *a ^ *b;
+
+template<typename T>
+void swap(T *a, T *b) {
+    T temp = *a;
+    *a = *b;
+    *b = temp;
+    return;
 }
-void bubble_sort_non_dec(int arr[], int size){
+
+template<typename T, typename U>
+void bubble_sort_non_dec(T arr[], U size){
     int i, j; 
-    int swapped;
+    bool swapped;
 
     for(i = 0; i < (size - 1); i++){
         swapped = 0;
         for(j=0; j < (size - 1) - i; j++){
             //simply change sign, it will change sort order!
             if(arr[j] > arr[j + 1]){ 
-                swap(&arr[j], &arr[j + 1]);
+                swap<int>(&arr[j], &arr[j + 1]);
                 swapped = 1;
             }
         }
@@ -35,10 +40,11 @@ void bubble_sort_non_dec(int arr[], int size){
 }
 
 int main(int argc, char *argv[]){
+
     int arr[] = {1,324,5};
     int size = sizeof(arr)/sizeof(arr[0]);
-    bubble_sort_non_dec(arr, size);
-    print_arry(arr, size);
+    bubble_sort_non_dec<int, int>(arr, size);
+    print_arry<int, int>(arr, size);
 
     return 0;
 }

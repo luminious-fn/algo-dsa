@@ -5,7 +5,29 @@ using namespace std;
 /*
 clear;g++ cast.cpp  && ./a.exe
 */
-
+class base {
+        public:
+            virtual void dump_v() {
+                cout << __FUNCTION__ << " base" << endl;
+                return;
+            }            
+            void dump_v1() {
+                cout << __FUNCTION__ << " base" << endl;
+                return;
+            }
+};
+class derived: public base {
+        public:
+            int a;
+            void dump_v() {
+                cout << __FUNCTION__ << " derived" << endl;
+                return;
+            }
+            void dump_v1() {
+                cout << __FUNCTION__ << " derived " << endl;
+                return;
+            }
+};
 
 int main(int argc, char *argv[]) {
 #if 0 
@@ -22,40 +44,16 @@ int main(int argc, char *argv[]) {
     //int a = 10;    
     double double_var { 10.3 };    
     int q = static_cast<int>(double_var); 
+    q = int(double_var);
     std::cout << q << std::endl;
 
     double *double_ptr { nullptr };
-    int *int_ptr = static_cast<int*> (double_ptr);
+    //int *int_ptr = static_cast<int*> (double_ptr);
 
     //int* p = static_cast<int*>(&c);
 #endif
 
 #if 1
-    class base {
-        public:
-            virtual void dump_v() {
-                cout << __FUNCTION__ << " base" << endl;
-                return;
-            }            
-            void dump_v1() {
-                cout << __FUNCTION__ << " base" << endl;
-                return;
-            }
-    };
-
-    class derived: public base {
-        public:
-            int a;
-            void dump_v() {
-                cout << __FUNCTION__ << " derived" << endl;
-                return;
-            }
-            void dump_v1() {
-                cout << __FUNCTION__ << " derived " << endl;
-                return;
-            }
-
-    };
     base *bp ;
     //base b;
     //bp = &b;

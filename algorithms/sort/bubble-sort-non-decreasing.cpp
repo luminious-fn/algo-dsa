@@ -1,6 +1,7 @@
 /*
 export PROG="bubble-sort-non-decreasing";clear; g++ $PROG.cpp -o $PROG.exe && ./$PROG.exe 
 */
+
 #include<iostream>
 #include<array>
 using namespace std;

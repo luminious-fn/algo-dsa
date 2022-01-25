@@ -3,15 +3,16 @@ using namespace std;
 
 /*
 g++ over-load.cpp  && ./a.exe
+
 */
 
 double fun(double a) {
-    cout << "hi double " << a << endl;    
+    std::cout << "hi double " << a << std::endl;    
     return 0.0;
 }
 
 int fun(int a) {
-    cout << "hi int " << a << endl;
+    std::cout << "hi int " << a << std::endl;
     return 0;
 }
 
@@ -25,7 +26,7 @@ class A {
             number = n;
         }
         int operator+(A n) {
-            cout << "a1 " << this->number << " a2: " << n.number;
+            std::cout << "a1 " << this->number << " a2: " << n.number;
             return this->number + n.number;
         }
 
@@ -41,6 +42,6 @@ int main(int argc, char *argv[]) {
 
     int x = n1 + n2;    
     x = n1.operator+(n2);
-    cout << " fffff: " << x;
+    std::cout << " fffff: " << x;
     return 0;
 }

@@ -3,9 +3,20 @@ using namespace std;
 
 /*
 g++ over-load.cpp  && ./a.exe
-
 */
 
+/*
+functions are not over loaded based on return type.
+since the argument type or numbers are differntiating 
+factors, so, there must be one such thing.
+Else, a compilation error would occur.
+ex: in below, instead of double a, if we had int a
+we get compile err even when return type is different
+for both the following functions. 
+reason is - compiler thinks, both functions are same
+on initial passes... return type does not matter much at this moment.
+
+*/
 double fun(double a) {
     std::cout << "hi double " << a << std::endl;    
     return 0.0;
@@ -15,8 +26,6 @@ int fun(int a) {
     std::cout << "hi int " << a << std::endl;
     return 0;
 }
-
-
 
 class A {
     public:

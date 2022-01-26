@@ -155,14 +155,27 @@ void dfs_pre_order(node *root) {
     dfs_pre_order(root->right);
 }
 
-void dfs_in_order(node *root) {
+void dfs_in_order_ascending_recursive(node *root) {
     if(root == NULL){        
         return;
     }
-    dfs_in_order(root->left);
+    dfs_in_order_ascending_recursive(root->left);
     //cout<< " (" << root << ")" << root->key;
     cout<< " " << root->key;
-    dfs_in_order(root->right);
+    dfs_in_order_ascending_recursive(root->right);
+}
+
+void dfs_in_order_ascending_iterative(node *root) {
+    if(root == NULL){        
+        return;
+    }
+    while(!root){                 
+        cout<< " " << root->key;
+    }
+    dfs_in_order_ascending_recursive(root->left);
+    //cout<< " (" << root << ")" << root->key;
+    
+    dfs_in_order_ascending_recursive(root->right);
 }
 
 void dfs_in_order_descending(node *root) {
@@ -225,7 +238,7 @@ int main() {
     cout<< endl;
     
     cout<< "in_oder: ";        
-    dfs_in_order(root);    
+    dfs_in_order_ascending_recursive(root);    
     cout<< endl;
 
     cout<< "in_oder: descedning";        
@@ -238,7 +251,7 @@ int main() {
 
     root = delete_node(root, 30);
     cout<< "in_oder after 30 deleted:";    
-    dfs_in_order(root);
+    dfs_in_order_ascending_recursive(root);
     std::cout<< endl;
    
     std::cout << "Done";

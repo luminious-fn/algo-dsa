@@ -1,10 +1,11 @@
 #include<iostream>
-#include<malloc.h>
 
-using namespace std;
+//using namespace std;
 /* 
- g++ bst.cpp && ./a.exe
+ clear;g++ bst.cpp && ./a.exe
  Binary Search Trees 
+
+Support CRUD create, read, update, Delete
 
  in-order traversal gets the keys in the ascending sorted order of the keys.
  pre-order traversal gets the keys in topological sorted order of the keys.
@@ -14,16 +15,17 @@ using namespace std;
 /*
 https://www.codingeek.com/data-structure/tree-traversal-bfs-and-dfs-introduction-explanation-and-implementation/#1_breadth_first_traversalbft_breadth_forst_searchbfs
 */
-typedef struct node node;
-struct node {
-    int key;
-    struct node *left;
-    struct node *right;
+
+class node {
+    public:
+        int key;
+        node *left;
+        node *right;
 };
 
-node *new_node(int key) {
-    //cout << "new_node" << endl;
-    node * node_ptr = (node*) malloc(sizeof(node));
+node *new_node(const int key) {
+    //cout << "new_node" << std::endl;
+    node * node_ptr = new node;
     if (node_ptr != NULL) {
         node_ptr->key = key;
         node_ptr->left = node_ptr->right = NULL;
@@ -34,16 +36,16 @@ node *new_node(int key) {
 }
 
 /* insert a node in BST */
-node *insert(node *root, int key) {
+node *insert(node *root, const int key) {
     if(root == NULL) {
-        cout << "insert: " << key << endl;
+        std::cout << "insert: " << key << std::endl;
         return new_node(key);
     }
     if(key < root->key){
-        //cout << "left" << endl;
+        //cout << "left" << std::endl;
         root->left = insert(root->left, key);
     } else if(key > root->key) {
-        //cout << "right" << endl;
+        //cout << "right" << std::endl;
         root->right = insert(root->right, key);
     }
     return root;
@@ -69,7 +71,7 @@ https://www.javatpoint.com/deletion-in-binary-search-tree
 
 */
 
-node *delete_node (node *root, int key) {
+node *delete_node (node * const root, const int key) {
     if(!root) {
         return root;
     }
@@ -82,17 +84,17 @@ node *delete_node (node *root, int key) {
     } else {
         if((root->left == NULL) && (root->right == NULL)){
             /*root has 0 children*/
-            free(root);
+            delete root;
             return NULL; // new root
         } else if(root->left == NULL){
             /*root has only 1 child*/
             node *new_root = root->right;
-            free(root);
+            delete root;
             return new_root;// new root
         } else if (root->right == NULL){
             /* root has only 1 child */
             node *new_root = root->left;
-            free(root);
+            delete root;
             return new_root;// new root
         } else {
             /* root has 2 children 
@@ -108,7 +110,7 @@ node *delete_node (node *root, int key) {
     //return root;
 }
 
-node *dfs_search(node *root, int key) {
+node *dfs_search(node *const root, const int key) {
     if((root == NULL) || (root->key == key)) {
         return root;
     }
@@ -119,20 +121,20 @@ node *dfs_search(node *root, int key) {
     }
 }
 
-int get_max_level(node *root){
+int get_max_level(const node * const root){
     if (!root){
         return 0;
     }
     int left_level = get_max_level(root->left);
     int right_level = get_max_level(root->right);
-    if (left > right) {
+    if (left_level > right_level) {
         return left_level + 1;
     } else {
         return right_level + 1;
     }
 }
 
-void bfs(node *root, int level){
+void bfs(node *root, const int level){
     if(!root) {
         return;
     }
@@ -150,7 +152,7 @@ void dfs_pre_order(node *root) {
     if(root == NULL) {        
         return;
     }
-    cout<<" " << root->key;
+    std::cout<<" " << root->key;
     dfs_pre_order(root->left);
     dfs_pre_order(root->right);
 }
@@ -160,8 +162,8 @@ void dfs_in_order_ascending_recursive(node *root) {
         return;
     }
     dfs_in_order_ascending_recursive(root->left);
-    //cout<< " (" << root << ")" << root->key;
-    cout<< " " << root->key;
+    //std::cout<< " (" << root << ")" << root->key;
+    std::cout<< " " << root->key;
     dfs_in_order_ascending_recursive(root->right);
 }
 
@@ -170,7 +172,7 @@ void dfs_in_order_ascending_iterative(node *root) {
         return;
     }
     while(!root){                 
-        cout<< " " << root->key;
+        std::cout<< " " << root->key;
     }
     dfs_in_order_ascending_recursive(root->left);
     //cout<< " (" << root << ")" << root->key;
@@ -184,7 +186,7 @@ void dfs_in_order_descending(node *root) {
     }
     dfs_in_order_descending(root->right);    
     //cout<< " (" << root << ")" << root->key;
-    cout<< " " << root->key;
+    std::cout<< " " << root->key;
     dfs_in_order_descending(root->left);    
 }
 
@@ -195,7 +197,7 @@ void dfs_post_order(node *root) {
     }
     dfs_post_order(root->left);
     dfs_post_order(root->right);
-    cout << " " << root->key; 
+    std::cout << " " << root->key; 
 }
 
 int total_nodes(node *root){
@@ -231,28 +233,28 @@ int main() {
     
     std::cout << " DFS " << std::endl;
     node *temp = dfs_search(root, 80);
-    cout << "key 40 @ node" << temp << endl;
+    std::cout << "key 40 @ node" << temp << std::endl;
     
-    cout<< "pre_oder: ";
+    std::cout<< "pre_oder: ";
     dfs_pre_order(root);
-    cout<< endl;
+    std::cout<< std::endl;
     
-    cout<< "in_oder: ";        
+    std::cout<< "in_oder: ";        
     dfs_in_order_ascending_recursive(root);    
-    cout<< endl;
+    std::cout<< std::endl;
 
-    cout<< "in_oder: descedning";        
+    std::cout<< "in_oder: descedning";        
     dfs_in_order_descending(root);
-    cout<< endl;
+    std::cout<< std::endl;
 
-    cout<< "post_oder: " ;
+    std::cout<< "post_oder: " ;
     dfs_post_order(root);
-    cout<< endl;
+    std::cout<< std::endl;
 
     root = delete_node(root, 30);
-    cout<< "in_oder after 30 deleted:";    
+    std::cout<< "in_oder after 30 deleted:";    
     dfs_in_order_ascending_recursive(root);
-    std::cout<< endl;
+    std::cout<< std::endl;
    
     std::cout << "Done";
 }

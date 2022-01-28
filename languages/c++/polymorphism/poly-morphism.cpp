@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-g++ poly-morphism.cpp  && ./a.exe
+clear; g++ -std=c++2a poly-morphism.cpp  && ./a.exe
 
 1. compile time polymorphism
     a. function over loading in a class: same function name and same return type
@@ -30,69 +30,48 @@ g++ poly-morphism.cpp  && ./a.exe
 
 */
 
-double fun(double a) {
-    cout << "hi double " << a << endl;
-    return 0.0;
-}
-
-int fun(int a) {
-    cout << "hi int " << a << endl;
-    return 0;
-}
-
-class parent {
+class base {
     public:
-#if 0 
-    void fun(void) {
-        cout << "in parent" << endl;
-    }
-#else
-        virtual void fun(void) = 0;
-#endif
-        virtual void fun_virt(void) {
-            cout << "in parent: fun_virt" << endl;
-        }
-        virtual void fun_pure_virt(void) = 0; // Enforces the implimentation
+        virtual void fun(void) const = 0; // Pure virtual
+        virtual void fun_virt(void) const;
+        virtual void fun_pure_virt(void) const = 0; // Enforces the implimentation
 };
 
-class child : public parent {
+void base::fun_virt(void) const {
+    cout << "in parent: fun_virt" << endl;
+}
+
+class derived : public base {
     public:
-        void fun(void) {
-            cout << "in child" << endl;
-        }
+        void fun(void) const override;
         void fun(int x) {
-
         }
-
-        void megha(int x) {
-
-        }
-
-
-        void fun_virt(void) {
+        void fun_virt(void) const override {
             cout << "in child : fun_virt" << endl;
         }
-        void fun_pure_virt(void) {
+        void fun_pure_virt(void) const override {
             cout << "implementing the pure virtual class in child" << endl;
         }
 };
 
+void derived::fun(void) const {
+    cout << "in child" << endl;
+}
+
+
 int main(int argc, char *argv[]) {
 
-    child c;
-    //parent virtual_class; This can't be done since it is abstract class
-    parent *p;
-    p = &c;
-    c.fun();
+    derived der;
+    base *ptr_base;
+    ptr_base = &der;
+    der.fun();
     cout<< "d fun \n";
-    p->fun();
-    //p->megha(1);
-    //c.megha(1);
+    ptr_base->fun();
 
-    c.fun_virt();
-    p->fun_virt();
+    der.fun_virt();
+    ptr_base->fun_virt();
 
-    p->fun_pure_virt();
+    ptr_base->fun_pure_virt();
 
     cout << endl;
     return 0;

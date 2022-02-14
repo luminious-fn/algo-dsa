@@ -81,7 +81,7 @@ node *delete_node (node * const root, const int key) {
     } else if (key > root->key) {
         root->right = delete_node(root->right, key);
         return root;
-    } else {
+    } else { // now actual delete happens
         if((root->left == NULL) && (root->right == NULL)){
             /*root has 0 children*/
             delete root;

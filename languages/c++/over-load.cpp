@@ -1,8 +1,10 @@
 #include<iostream>
+#include<string>
 using namespace std;
 
+using std::cout;
 /*
-g++ over-load.cpp  && ./a.exe
+g++ --std=c++2a over-load.cpp  && ./a.exe
 */
 
 /*
@@ -35,9 +37,17 @@ class A {
             number = n;
         }
         int operator+(A n) {
-            std::cout << "a1 " << this->number << " a2: " << n.number;
+            std::cout << "operator Overload +::  a1 " << this->number << " a2: " << n.number << endl;
             return this->number + n.number;
         }
+        int operator+(char *rhs) {
+            std::cout << "operator Overload + ooo a1 " << endl;
+            return 0;
+        }
+        int operator+=(A n) {
+            std::cout << "operator Overload +-::  a1 " << this->number << " a2: " << n.number << endl;
+            return this->number + n.number;
+        }        
 
 };
 
@@ -49,8 +59,12 @@ int main(int argc, char *argv[]) {
     /* operator overloading */
     A n1(4), n2(8);
 
-    int x = n1 + n2;    
+    n1 += n2;
+    int x = n1 + n2;
     x = n1.operator+(n2);
     std::cout << " fffff: " << x;
+
+    std::string p = "hello"s + "world!"s;
+    cout << p;    
     return 0;
 }

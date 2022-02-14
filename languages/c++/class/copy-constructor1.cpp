@@ -1,15 +1,12 @@
 #include <iostream>
-
 using namespace std;
 
 class Line {
-
    public:
       int getLength( void );
       Line( int len );             // simple constructor
       Line( const Line &obj);  // copy constructor
       ~Line();                     // destructor
-
    private:
       int *ptr;
 };

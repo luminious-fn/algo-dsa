@@ -24,9 +24,13 @@ double fun(double a) {
     return 0.0;
 }
 
-int fun(int a) {
-    std::cout << "hi int " << a << std::endl;
-    return 0;
+double fun(int a) {
+    std::cout << "plain int " << a << std::endl;
+    return 0.0;
+}
+double fun(unsigned int a) {
+    std::cout << "unsigned int " << a << std::endl;
+    return 0.0;
 }
 
 class A {

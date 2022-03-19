@@ -31,37 +31,45 @@ clear; g++ -std=c++2a poly-morphism.cpp  && ./a.exe
 */
 
 class base {
-    public:
-        virtual void fun(void) const = 0; // Pure virtual
-        virtual void fun_virt(void) const;
-        virtual void fun_pure_virt(void) const = 0; // Enforces the implimentation
+	public:
+	base() {
+		cout << "base constructor" << endl;
+	}
+	virtual void fun(void) const = 0; // Pure virtual
+	virtual void fun_virt(void) const;
+	virtual void fun_pure_virt(void) const = 0; // Enforces the implementation
 };
 
 void base::fun_virt(void) const {
-    cout << "in parent: fun_virt" << endl;
+    cout << "in base: fun_virt" << endl;
 }
 
 class derived : public base {
     public:
-        void fun(void) const override;
-        void fun(int x) {
-        }
-        void fun_virt(void) const override {
-            cout << "in child : fun_virt" << endl;
-        }
-        void fun_pure_virt(void) const override {
-            cout << "implementing the pure virtual class in child" << endl;
-        }
+	derived(){
+		cout << "derived: constructor" << endl;
+	}
+	void fun(void) const override;
+	void fun(int x) {
+
+	}
+	void fun_virt(void) const override {
+		cout << "in derived : fun_virt" << endl;
+	}
+	void fun_pure_virt(void) const override {
+		cout << "implementing the pure virtual class in derived" << endl;
+	}
 };
 
 void derived::fun(void) const {
-    cout << "in child" << endl;
+    cout << "in derived" << endl;
 }
 
 
 int main(int argc, char *argv[]) {
 
     derived der;
+    cout << "-----------";
     base *ptr_base;
     ptr_base = &der;
     der.fun();

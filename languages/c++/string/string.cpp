@@ -54,6 +54,17 @@ int main(int argc, char *argv[]){
         cout << i;
     }
 
+    char s[] {"hel\40lo"}; // \ represent escape seq for ocatal number \abc
+    char const *s_1 = "hel\40lo"; // \ represent escape seq for ocatal number \abc
+    printf("%s", s);
+    cout << std::endl << s << ", " << sizeof(s);
+    /* size is 7 bytes. \40 is one octal number
+     * \000 octal number  - 1 byte max value \377
+     * \xAB hexa decimal  - 1 byte max value \xFF
+     *
+     * */
+
+
     return 0;
 
 }

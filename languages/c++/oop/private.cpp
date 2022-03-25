@@ -3,9 +3,11 @@ using std::cout;
 using std::endl;
 
 /*
-  g++ -std=c++2a inheritance1.cpp && ./a.exe
+  g++ private.cpp && ./a.exe
  * */
 class base1{
+private:
+	int a1;
 public:
 	base1(){
 		cout << "constructor base1" << endl;
@@ -27,7 +29,11 @@ public:
 
 class derived : public base1, public base2 {
 public:
-	explicit derived( int a) : base2 { }, base1 { } {
+	void display(){
+		cout << "hello" << base1::a1 << endl;
+	}
+
+	explicit derived( int a){
 		cout << "constructor derived" << endl;
 	}
 	~derived(){

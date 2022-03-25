@@ -1,24 +1,28 @@
 #include<iostream>
 
 using namespace std;
+/*
+  g++ new-op.cpp && ./a.exe
+ * */
+
 #define index(x,y) (x*3+y)
 
 class Box{
     public:
         int x;
         Box(int a);
-        Box();
+        //Box();
 };
 
 Box::Box(int a){
     cout << "1 arg constructor called" << endl;
     x = 100;
 }
-
+/*
 Box::Box(){
     cout << "no arg constructor called" << endl;
     x = 100;
-}
+}*/
 
 
 int main(int argc, char *argv[]){
@@ -39,7 +43,13 @@ int main(int argc, char *argv[]){
     //double** pvalue1  = NULL;      // Pointer initialized with null 
     //pvalue1  = new double [3][4];  // Allocate memory for a 3x4 array 
    
-    Box *pb = new Box[5] { Box(99), Box(99), Box(99), Box(99) };   
+    Box *pb = new Box[5] { Box(99), Box(99), Box(99), Box(99) };
+    /* Following fails because, new operator expects a zero arg constructor.
+     * typically, this is defined by compiler but since i defined my own constructor,
+     * here, it does not get defined. hence new does not find it. hence error.
+     * if you uncomment above zero arg constructor, it works.
+     */
+    Box *pb_zero_arg = new Box[2];
     //Box obj[2] = { Box(1) };
 
  }
